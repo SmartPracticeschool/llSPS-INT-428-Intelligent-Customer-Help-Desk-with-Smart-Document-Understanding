@@ -1,0 +1,286 @@
+[
+    {
+        "id": "dbb1b19c.d8253",
+        "type": "tab",
+        "label": "Customer Help Desk",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "10af73c6.f83f4c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Customer Help Desk",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "6973dc26.ad5174",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#ff0000",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#ff0000",
+                "baseFont": "Lucida Sans Typewriter,Lucida Console,Monaco,monospace",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#ff0000",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#ff0000",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#ff4d4d",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#ff0000",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 45,
+                "sy": 45,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 6,
+                "py": 6
+            }
+        }
+    },
+    {
+        "id": "def96352.a8e1a",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "bdf2e89f.eec7c8",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ab62bf0a.e03bf",
+        "type": "ui_group",
+        "z": "",
+        "name": "",
+        "tab": "10af73c6.f83f4c",
+        "order": 1,
+        "disp": true,
+        "width": "27",
+        "collapse": false
+    },
+    {
+        "id": "4282f509.fff00c",
+        "type": "watson-conversation-v1",
+        "z": "dbb1b19c.d8253",
+        "name": "",
+        "workspaceid": "617d5db3-c85f-47b5-8f90-35db631250aa",
+        "multiuser": false,
+        "context": false,
+        "empty-payload": false,
+        "service-endpoint": "https://api.eu-gb.assistant.watson.cloud.ibm.com/instances/f79fec49-933c-46e0-b562-1d2bc9f497b5",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "614af566.383c7c",
+                "b74ac027.d9c3e"
+            ]
+        ]
+    },
+    {
+        "id": "614af566.383c7c",
+        "type": "debug",
+        "z": "dbb1b19c.d8253",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 790,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b74ac027.d9c3e",
+        "type": "function",
+        "z": "dbb1b19c.d8253",
+        "name": "parsing",
+        "func": "msg.payload.text=\"\";\nif(msg.payload.context.webhook_result_1){\n    for(var i in msg.payload.context.webhook_result_1.results){\n    msg.payload.text=msg.payload.text+\"\\n\"+msg.payload.context.webhook_result_1.results[i].text;\n}\n    msg.payload=msg.payload.text;\n}\n\nelse\nmsg.payload = msg.payload.output.text[0];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 240,
+        "wires": [
+            [
+                "5c6f5a9a.1e4ce4",
+                "6321f3a0.70164c"
+            ]
+        ]
+    },
+    {
+        "id": "40b69536.c1160c",
+        "type": "ui_text",
+        "z": "dbb1b19c.d8253",
+        "group": "ab62bf0a.e03bf",
+        "order": 1,
+        "width": 27,
+        "height": 1,
+        "name": "",
+        "label": "You",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 390,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5c6f5a9a.1e4ce4",
+        "type": "ui_text",
+        "z": "dbb1b19c.d8253",
+        "group": "ab62bf0a.e03bf",
+        "order": 2,
+        "width": 27,
+        "height": 8,
+        "name": "",
+        "label": "Bot",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 570,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "6321f3a0.70164c",
+        "type": "debug",
+        "z": "dbb1b19c.d8253",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 790,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "90073b46.d9f708",
+        "type": "function",
+        "z": "dbb1b19c.d8253",
+        "name": "input parsing",
+        "func": "msg.payload=msg.payload.text;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "4282f509.fff00c",
+                "40b69536.c1160c"
+            ]
+        ]
+    },
+    {
+        "id": "a18764ff.448638",
+        "type": "ui_form",
+        "z": "dbb1b19c.d8253",
+        "name": "",
+        "label": "Enter your Query",
+        "group": "ab62bf0a.e03bf",
+        "order": 3,
+        "width": "27",
+        "height": "1",
+        "options": [
+            {
+                "label": "",
+                "value": "text",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "text": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "90073b46.d9f708"
+            ]
+        ]
+    }
+]
