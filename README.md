@@ -10,6 +10,10 @@ The typical customer care chatbot can answer simple questions, such as store loc
 
 To take it a step further, we will use the Smart Document Understanding feature of Watson Discovery to train it on what text in the owners manual is important and what is not. This will improve the answers returned from the queries.
 
+# Project Explanation Video and Link
+
+
+
 # Chatbot Link
 
 https://node-red-qeyad.eu-gb.mybluemix.net/ui/#!/0?socketid=GDfQDCBt_qiix49XAAAE
