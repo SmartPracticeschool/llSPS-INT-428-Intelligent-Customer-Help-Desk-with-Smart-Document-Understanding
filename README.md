@@ -23,13 +23,21 @@ To take it a step further, we will use the Smart Document Understanding feature 
 https://node-red-qeyad.eu-gb.mybluemix.net/ui/#!/0?socketid=GDfQDCBt_qiix49XAAAE
 
 # Contents in Repository
+
 1.Project Scope Document
+
 2.Cloud Function Code
+
 3.Node RED Flow Code
+
 4.Node RED Master
+
 5.Watson Assistant Skill
+
 6.Watson Discovery Document
+
 7.Project Explanation Video PPT
+
 8.Project Report
 
 
